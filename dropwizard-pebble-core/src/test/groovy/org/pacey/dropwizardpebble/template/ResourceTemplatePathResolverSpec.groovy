@@ -11,11 +11,11 @@ class ResourceTemplatePathResolverSpec extends Specification {
 		pebbleView.getTemplateName() >> "the-best-view-ever"
 
 		when:
-		final ResourceTemplatePathResolver resourceTemplatePathResolver = new ResourceTemplatePathResolver(suffix)
+		final ResourceTemplatePathResolver resourceTemplatePathResolver = new ResourceTemplatePathResolver(".peb")
 		def templatePath = resourceTemplatePathResolver.resolve(pebbleView)
 
 		then:
-		templatePath == "/org/pacey/dropwizardpebble/the-best-view-ever"
+		templatePath == "/org/pacey/dropwizardpebble/the-best-view-ever.peb"
 	}
 
 }

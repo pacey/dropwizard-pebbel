@@ -11,11 +11,11 @@ class DirectoryTemplatePathResolverSpec extends Specification {
 		pebbleView.getTemplateName() >> "/views/homepage"
 
 		when:
-		final DirectoryTemplatePathResolver directoryTemplatePathResolver = new DirectoryTemplatePathResolver(prefix, suffix);
+		final DirectoryTemplatePathResolver directoryTemplatePathResolver = new DirectoryTemplatePathResolver("/templates", ".peb");
 		def templatePath = directoryTemplatePathResolver.resolve(pebbleView)
 
 		then:
-		templatePath == "/views/homepage"
+		templatePath == "/templates/views/homepage.peb"
 	}
 
 }
