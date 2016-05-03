@@ -11,7 +11,7 @@ class DirectoryTemplatePathResolverSpec extends Specification {
 		pebbleView.getTemplateName() >> "/views/homepage"
 
 		when:
-		final DirectoryTemplatePathResolver directoryTemplatePathResolver = new DirectoryTemplatePathResolver();
+		final DirectoryTemplatePathResolver directoryTemplatePathResolver = new DirectoryTemplatePathResolver(prefix, suffix);
 		def templatePath = directoryTemplatePathResolver.resolve(pebbleView)
 
 		then:

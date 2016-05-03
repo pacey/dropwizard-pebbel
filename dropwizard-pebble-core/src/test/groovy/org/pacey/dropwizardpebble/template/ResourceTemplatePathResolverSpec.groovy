@@ -11,7 +11,7 @@ class ResourceTemplatePathResolverSpec extends Specification {
 		pebbleView.getTemplateName() >> "the-best-view-ever"
 
 		when:
-		final ResourceTemplatePathResolver resourceTemplatePathResolver = new ResourceTemplatePathResolver()
+		final ResourceTemplatePathResolver resourceTemplatePathResolver = new ResourceTemplatePathResolver(suffix)
 		def templatePath = resourceTemplatePathResolver.resolve(pebbleView)
 
 		then:
