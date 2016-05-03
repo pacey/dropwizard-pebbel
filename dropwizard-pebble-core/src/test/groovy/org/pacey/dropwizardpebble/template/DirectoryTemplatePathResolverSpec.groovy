@@ -5,17 +5,17 @@ import spock.lang.Specification
 
 class DirectoryTemplatePathResolverSpec extends Specification {
 
-    def "should resolve template path to a directory"() {
-        given:
-        final PebbleView pebbleView = Mock(PebbleView.class)
-        pebbleView.getTemplateName() >> "/views/homepage"
+	def "should resolve template path to a directory"() {
+		given:
+		final PebbleView pebbleView = Mock(PebbleView.class)
+		pebbleView.getTemplateName() >> "/views/homepage"
 
-        when:
-        final DirectoryTemplatePathResolver directoryTemplatePathResolver = new DirectoryTemplatePathResolver();
-        def templatePath = directoryTemplatePathResolver.resolve(pebbleView)
+		when:
+		final DirectoryTemplatePathResolver directoryTemplatePathResolver = new DirectoryTemplatePathResolver();
+		def templatePath = directoryTemplatePathResolver.resolve(pebbleView)
 
-        then:
-        templatePath == "/views/homepage"
-    }
+		then:
+		templatePath == "/views/homepage"
+	}
 
 }

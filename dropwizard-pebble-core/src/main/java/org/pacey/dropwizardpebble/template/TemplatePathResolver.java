@@ -4,6 +4,6 @@ import org.pacey.dropwizardpebble.PebbleView;
 
 public interface TemplatePathResolver {
 
-    String resolve(PebbleView pebbleView);
+	String resolve(PebbleView pebbleView);
 
 }
