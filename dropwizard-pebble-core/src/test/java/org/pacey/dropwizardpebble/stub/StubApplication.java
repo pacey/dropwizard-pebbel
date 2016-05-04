@@ -1,4 +1,4 @@
-package org.pacey.dropwizardpebble.configuration;
+package org.pacey.dropwizardpebble.stub;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -19,5 +19,6 @@ public class StubApplication extends Application<StubApplicationConfiguration> {
 	@Override
 	public void run(StubApplicationConfiguration configuration, Environment environment) throws Exception {
 		environment.jersey().register(new StubResource());
+		environment.jersey().register(new InternationalisationResource());
 	}
 }

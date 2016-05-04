@@ -1,7 +1,9 @@
-package org.pacey.dropwizardpebble.configuration;
+package org.pacey.dropwizardpebble.stub;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
+import org.pacey.dropwizardpebble.configuration.PebbleConfigurable;
+import org.pacey.dropwizardpebble.configuration.PebbleConfiguration;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

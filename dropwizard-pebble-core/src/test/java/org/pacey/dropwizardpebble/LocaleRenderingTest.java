@@ -1,4 +1,4 @@
-package org.pacey.dropwizardpebble.configuration;
+package org.pacey.dropwizardpebble;
 
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.junit.Rule;
@@ -12,21 +12,33 @@ import static com.jayway.restassured.RestAssured.given;
 import static io.dropwizard.testing.ResourceHelpers.resourceFilePath;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PebbleConfiguration_DirectoryTemplateResolverTest {
+public class LocaleRenderingTest {
 
 	@Rule
 	public DropwizardAppRule<StubApplicationConfiguration> RULE =
 		new DropwizardAppRule<>(StubApplication.class, resourceFilePath("directoryTemplatePathResolver.yaml"));
 
 	@Test
-	public void shouldRenderTemplateFromTemplateDirectory() throws Exception {
+	public void shouldUseTheLocaleSpecifiedInTheHttpHeadersEnGB() throws Exception {
 		given()
 			.log().all()
-			.get(String.format("http://localhost:%d/stub.html", RULE.getLocalPort()))
+			.header("Accept-Language", "en-gb")
+			.get(String.format("http://localhost:%d/internationalisation.html", RULE.getLocalPort()))
 			.then().log().all()
 			.statusCode(200)
 			.header("Content-Type", MediaType.TEXT_HTML)
-			.body(equalTo("<p>A rendered pebble template - willHaveAValue</p>\n"));
+			.body(equalTo("Alright me old mucka"));
 	}
 
+	@Test
+	public void shouldUseTheLocaleSpecifiedInTheHttpHeadersEnUS() throws Exception {
+		given()
+			.log().all()
+			.header("Accept-Language", "en-us")
+			.get(String.format("http://localhost:%d/internationalisation.html", RULE.getLocalPort()))
+			.then().log().all()
+			.statusCode(200)
+			.header("Content-Type", MediaType.TEXT_HTML)
+			.body(equalTo("Hello"));
+	}
 }

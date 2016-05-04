@@ -3,6 +3,8 @@ package org.pacey.dropwizardpebble.configuration;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.pacey.dropwizardpebble.stub.StubApplication;
+import org.pacey.dropwizardpebble.stub.StubApplicationConfiguration;
 
 import javax.ws.rs.core.MediaType;
 

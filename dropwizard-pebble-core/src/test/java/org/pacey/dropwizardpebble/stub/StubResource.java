@@ -1,4 +1,4 @@
-package org.pacey.dropwizardpebble.configuration;
+package org.pacey.dropwizardpebble.stub;
 
 import org.pacey.dropwizardpebble.PebbleView;
 
