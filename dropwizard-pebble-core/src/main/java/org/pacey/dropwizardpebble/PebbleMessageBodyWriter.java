@@ -72,7 +72,7 @@ public class PebbleMessageBodyWriter implements MessageBodyWriter<PebbleView> {
 	private Locale detectLocale(HttpHeaders headers) {
 		final Locale defaultLocale = Locale.getDefault();
 
-		if (headers == null ) {
+		if (headers == null) {
 			return defaultLocale;
 		}
 

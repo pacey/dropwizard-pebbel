@@ -44,8 +44,7 @@ public class PebbleViewRenderer {
 
 		if (pebbleConfiguration.getPrefix() != null) {
 			templateResolver = new DirectoryTemplateResolver(pebbleConfiguration.getPrefix(), pebbleConfiguration.getSuffix());
-		}
-		else {
+		} else {
 			templateResolver = new ResourceTemplateResolver(pebbleConfiguration.getSuffix());
 		}
 
@@ -59,7 +58,7 @@ public class PebbleViewRenderer {
 	}
 
 	public void render(PebbleView pebbleView, Locale locale, OutputStream output) throws IOException, PebbleException {
-		try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output)){
+		try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output)) {
 			pebbleEngine.getTemplate(templateResolver.resolve(pebbleView)).evaluate(outputStreamWriter, pebbleView.getContext(), locale);
 		}
 	}
@@ -77,8 +76,8 @@ public class PebbleViewRenderer {
 
 	private ExecutorService configureExecutorService(LifecycleEnvironment lifecycleEnvironment, ThreadPoolConfiguration threadPoolConfiguration) {
 		return lifecycleEnvironment.executorService("Pebble")
-            .minThreads(threadPoolConfiguration.getMin())
-            .maxThreads(threadPoolConfiguration.getMax())
-            .build();
+			.minThreads(threadPoolConfiguration.getMin())
+			.maxThreads(threadPoolConfiguration.getMax())
+			.build();
 	}
 }
