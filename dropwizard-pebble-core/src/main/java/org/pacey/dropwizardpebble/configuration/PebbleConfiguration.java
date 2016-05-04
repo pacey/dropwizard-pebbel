@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 
 public class PebbleConfiguration {
 
-	@NotEmpty
 	private String prefix;
 
 	@NotNull

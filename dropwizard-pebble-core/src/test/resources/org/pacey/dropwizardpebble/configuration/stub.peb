@@ -1,1 +1,1 @@
-<p>Some stubbing here</p>
+<p>A rendered pebble template from a resource/REST path - {{someVariable}}</p>

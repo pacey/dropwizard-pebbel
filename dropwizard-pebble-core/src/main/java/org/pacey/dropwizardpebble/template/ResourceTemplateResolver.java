@@ -13,6 +13,6 @@ public class ResourceTemplateResolver implements TemplateResolver {
 	@Override
 	public String resolve(PebbleView pebbleView) {
 		final String packagePath = pebbleView.getClass().getPackage().getName().replace('.', '/');
-		return String.format("/%s/%s%s", packagePath, pebbleView.getTemplateName(), suffix);
+		return String.format("%s%s%s", packagePath, pebbleView.getTemplateName(), suffix);
 	}
 }

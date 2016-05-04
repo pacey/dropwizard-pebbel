@@ -8,14 +8,14 @@ class ResourceTemplatePathResolverSpec extends Specification {
 	def "should resolve template path to a resource directory"() {
 		given:
 		final PebbleView pebbleView = Mock(PebbleView.class)
-		pebbleView.getTemplateName() >> "the-best-view-ever"
+		pebbleView.getTemplateName() >> "/the-best-view-ever"
 
 		when:
 		final ResourceTemplateResolver resourceTemplatePathResolver = new ResourceTemplateResolver(".peb")
 		def templatePath = resourceTemplatePathResolver.resolve(pebbleView)
 
 		then:
-		templatePath == "/org/pacey/dropwizardpebble/the-best-view-ever.peb"
+		templatePath == "org/pacey/dropwizardpebble/the-best-view-ever.peb"
 	}
 
 }
