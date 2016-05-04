@@ -61,7 +61,7 @@ public class PebbleViewRenderer {
 
 	public void render(PebbleView pebbleView, Locale locale, OutputStream output) throws IOException, PebbleException {
 		try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output)){
-			pebbleEngine.getTemplate(templatePathResolver.resolve(pebbleView)).evaluate(outputStreamWriter, ImmutableMap.of(), locale);
+			pebbleEngine.getTemplate(templatePathResolver.resolve(pebbleView)).evaluate(outputStreamWriter, pebbleView.getContext(), locale);
 		}
 	}
 

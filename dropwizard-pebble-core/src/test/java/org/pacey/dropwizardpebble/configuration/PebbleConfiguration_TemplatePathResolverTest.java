@@ -24,7 +24,7 @@ public class PebbleConfiguration_TemplatePathResolverTest {
 			.then().log().all()
 			.statusCode(200)
 			.header("Content-Type", MediaType.TEXT_HTML)
-			.body(equalTo("<p>Some stubbing here</p>\n"));
+			.body(equalTo("<p>A rendered pebble template - willHaveAValue</p>\n"));
 	}
 
 }
