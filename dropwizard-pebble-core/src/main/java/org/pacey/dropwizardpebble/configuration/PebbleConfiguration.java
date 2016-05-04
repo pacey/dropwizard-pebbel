@@ -18,7 +18,6 @@ public class PebbleConfiguration {
 	private Boolean cacheActive = true;
 
 	@Valid
-	@NotNull
 	private ThreadPoolConfiguration threadPoolConfiguration;
 
 	@Valid
@@ -26,6 +25,12 @@ public class PebbleConfiguration {
 
 	@Valid
 	private CacheConfiguration tagCacheConfiguration;
+
+	public PebbleConfiguration() {
+		this.threadPoolConfiguration = new ThreadPoolConfiguration();
+		this.templateCacheConfiguration = new CacheConfiguration();
+		this.tagCacheConfiguration = new CacheConfiguration();
+	}
 
 	@JsonProperty("prefix")
 	public String getPrefix() {

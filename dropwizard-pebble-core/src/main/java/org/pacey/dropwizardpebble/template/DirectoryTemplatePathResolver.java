@@ -14,6 +14,10 @@ public class DirectoryTemplatePathResolver implements TemplatePathResolver {
 
 	@Override
 	public String resolve(PebbleView pebbleView) {
-		return prefix + pebbleView.getTemplateName() + suffix;
+		String templateUri = prefix + pebbleView.getTemplateName() + suffix;
+		if (templateUri.startsWith("/")) {
+			templateUri = templateUri.replaceFirst("/", "");
+		}
+		return templateUri;
 	}
 }

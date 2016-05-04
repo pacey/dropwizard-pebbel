@@ -15,7 +15,7 @@ class DirectoryTemplatePathResolverSpec extends Specification {
 		def templatePath = directoryTemplatePathResolver.resolve(pebbleView)
 
 		then:
-		templatePath == "/templates/views/homepage.peb"
+		templatePath == "templates/views/homepage.peb"
 	}
 
 }
