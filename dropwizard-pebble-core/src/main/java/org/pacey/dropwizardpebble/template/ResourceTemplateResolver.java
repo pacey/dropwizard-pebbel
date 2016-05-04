@@ -2,11 +2,11 @@ package org.pacey.dropwizardpebble.template;
 
 import org.pacey.dropwizardpebble.PebbleView;
 
-public class ResourceTemplatePathResolver implements TemplatePathResolver {
+public class ResourceTemplateResolver implements TemplateResolver {
 
 	private final String suffix;
 
-	public ResourceTemplatePathResolver(String suffix) {
+	public ResourceTemplateResolver(String suffix) {
 		this.suffix = suffix;
 	}
 

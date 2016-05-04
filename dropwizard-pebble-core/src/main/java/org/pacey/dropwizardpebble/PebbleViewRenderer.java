@@ -2,7 +2,6 @@ package org.pacey.dropwizardpebble;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.collect.ImmutableMap;
 import com.mitchellbosecke.pebble.PebbleEngine;
 import com.mitchellbosecke.pebble.cache.BaseTagCacheKey;
 import com.mitchellbosecke.pebble.error.PebbleException;
@@ -12,9 +11,9 @@ import io.dropwizard.lifecycle.setup.LifecycleEnvironment;
 import org.pacey.dropwizardpebble.configuration.CacheConfiguration;
 import org.pacey.dropwizardpebble.configuration.PebbleConfiguration;
 import org.pacey.dropwizardpebble.configuration.ThreadPoolConfiguration;
-import org.pacey.dropwizardpebble.template.DirectoryTemplatePathResolver;
-import org.pacey.dropwizardpebble.template.ResourceTemplatePathResolver;
-import org.pacey.dropwizardpebble.template.TemplatePathResolver;
+import org.pacey.dropwizardpebble.template.DirectoryTemplateResolver;
+import org.pacey.dropwizardpebble.template.ResourceTemplateResolver;
+import org.pacey.dropwizardpebble.template.TemplateResolver;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -28,7 +27,7 @@ public class PebbleViewRenderer {
 	private ExecutorService executorService = null;
 	private Cache<Object, PebbleTemplate> templateCache = null;
 	private Cache<BaseTagCacheKey, Object> tagCache = null;
-	private TemplatePathResolver templatePathResolver;
+	private TemplateResolver templateResolver;
 
 	public void configure(LifecycleEnvironment lifecycleEnvironment, PebbleConfiguration pebbleConfiguration) {
 		if (pebbleConfiguration.getThreadPoolConfiguration().getEnabled()) {
@@ -44,10 +43,10 @@ public class PebbleViewRenderer {
 		}
 
 		if (pebbleConfiguration.getPrefix() != null) {
-			templatePathResolver = new DirectoryTemplatePathResolver(pebbleConfiguration.getPrefix(), pebbleConfiguration.getSuffix());
+			templateResolver = new DirectoryTemplateResolver(pebbleConfiguration.getPrefix(), pebbleConfiguration.getSuffix());
 		}
 		else {
-			templatePathResolver = new ResourceTemplatePathResolver(pebbleConfiguration.getSuffix());
+			templateResolver = new ResourceTemplateResolver(pebbleConfiguration.getSuffix());
 		}
 
 		pebbleEngine = new PebbleEngine.Builder()
@@ -61,7 +60,7 @@ public class PebbleViewRenderer {
 
 	public void render(PebbleView pebbleView, Locale locale, OutputStream output) throws IOException, PebbleException {
 		try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output)){
-			pebbleEngine.getTemplate(templatePathResolver.resolve(pebbleView)).evaluate(outputStreamWriter, pebbleView.getContext(), locale);
+			pebbleEngine.getTemplate(templateResolver.resolve(pebbleView)).evaluate(outputStreamWriter, pebbleView.getContext(), locale);
 		}
 	}
 

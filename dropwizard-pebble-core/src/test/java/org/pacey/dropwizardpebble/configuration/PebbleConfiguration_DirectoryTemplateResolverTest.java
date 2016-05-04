@@ -10,11 +10,11 @@ import static com.jayway.restassured.RestAssured.given;
 import static io.dropwizard.testing.ResourceHelpers.resourceFilePath;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PebbleConfiguration_TemplatePathResolverTest {
+public class PebbleConfiguration_DirectoryTemplateResolverTest {
 
 	@Rule
 	public DropwizardAppRule<StubApplicationConfiguration> RULE =
-		new DropwizardAppRule<>(StubApplication.class, resourceFilePath("templatePathResolver.yaml"));
+		new DropwizardAppRule<>(StubApplication.class, resourceFilePath("directoryTemplatePathResolver.yaml"));
 
 	@Test
 	public void shouldRenderTemplateFromTemplateDirectory() throws Exception {
