@@ -4,14 +4,17 @@ import io.dropwizard.Configuration;
 import io.dropwizard.ConfiguredBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import org.pacey.dropwizardpebble.configuration.PebbleConfigurable;
 
-public class PebbleBundle<T extends Configuration & PebbleConfigurable> implements ConfiguredBundle<T> {
+public class PebbleBundle<T extends Configuration> implements ConfiguredBundle<T> {
 
-	private final PebbleViewRenderer pebbleViewRenderer;
+	private final PebbleViewRenderer<T> pebbleViewRenderer;
 
 	public PebbleBundle() {
-		this.pebbleViewRenderer = new PebbleViewRenderer();
+		this.pebbleViewRenderer = new PebbleViewRenderer<>(new SimplePebbleEngineConfigurable<>(), new SimpleTemplateResolver());
+	}
+
+	public PebbleBundle(PebbleEngineConfigurable<T> pebbleEngineConfigurable, TemplateResolver templateResolver) {
+		this.pebbleViewRenderer = new PebbleViewRenderer<>(pebbleEngineConfigurable, templateResolver);
 	}
 
 	@Override
@@ -21,7 +24,7 @@ public class PebbleBundle<T extends Configuration & PebbleConfigurable> implemen
 
 	@Override
 	public void run(T configuration, Environment environment) throws Exception {
-		this.pebbleViewRenderer.configure(environment.lifecycle(), configuration.getPebbleConfiguration());
+		this.pebbleViewRenderer.configure(environment.lifecycle(), configuration);
 		environment.jersey().register(new PebbleMessageBodyWriter(this.pebbleViewRenderer, environment.metrics()));
 	}
 }

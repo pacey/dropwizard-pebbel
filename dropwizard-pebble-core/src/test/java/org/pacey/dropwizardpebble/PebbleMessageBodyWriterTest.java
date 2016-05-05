@@ -129,6 +129,13 @@ public class PebbleMessageBodyWriterTest {
 		pebbleMessageBodyWriter.writeTo(pebbleView, PebbleView.class, PebbleView.class, new Annotation[0], TEXT_HTML_TYPE, new MultivaluedHashMap<>(), outputStream);
 	}
 
+	@Test
+	public void shouldReturnMinusOneForTheContentSizeAsItCannotBeDeterminedUpFront() throws Exception {
+		long size = pebbleMessageBodyWriter.getSize(pebbleView, PebbleView.class, PebbleView.class, new Annotation[0], TEXT_HTML_TYPE);
+
+		assertThat(size).isEqualTo(-1);
+	}
+
 	private class ConcretePebbleView implements PebbleView {
 		@Override
 		public Map<String, Object> getContext() {

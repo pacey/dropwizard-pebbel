@@ -9,14 +9,13 @@ import org.pacey.dropwizardpebble.stub.StubApplicationConfiguration;
 import javax.ws.rs.core.MediaType;
 
 import static com.jayway.restassured.RestAssured.given;
-import static io.dropwizard.testing.ResourceHelpers.resourceFilePath;
 import static org.hamcrest.Matchers.equalTo;
 
 public class LocaleRenderingTest {
 
 	@Rule
 	public DropwizardAppRule<StubApplicationConfiguration> RULE =
-		new DropwizardAppRule<>(StubApplication.class, resourceFilePath("directoryTemplatePathResolver.yaml"));
+		new DropwizardAppRule<>(StubApplication.class);
 
 	@Test
 	public void shouldUseTheLocaleSpecifiedInTheHttpHeadersEnGB() throws Exception {
