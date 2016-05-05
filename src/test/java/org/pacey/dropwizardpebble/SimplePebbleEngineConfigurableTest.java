@@ -27,11 +27,11 @@ public class SimplePebbleEngineConfigurableTest {
 	@Mock
 	private PebbleEngine pebbleEngine;
 
-	private SimplePebbleEngineConfigurable simplePebbleEngineConfigurable;
+	private SimplePebbleEngineConfigurable<Configuration> simplePebbleEngineConfigurable;
 
 	@Before
 	public void createClassUnderTest() throws Exception {
-		this.simplePebbleEngineConfigurable = new SimplePebbleEngineConfigurable();
+		this.simplePebbleEngineConfigurable = new SimplePebbleEngineConfigurable<>();
 	}
 
 	@Test
