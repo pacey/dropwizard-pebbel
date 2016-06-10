@@ -10,7 +10,7 @@ public class PebbleBundle<T extends Configuration> implements ConfiguredBundle<T
 	private final PebbleViewRenderer<T> pebbleViewRenderer;
 
 	public PebbleBundle() {
-		this.pebbleViewRenderer = new PebbleViewRenderer<>(new SimplePebbleEngineConfigurable<>(), new SimpleTemplateResolver());
+		this(new SimplePebbleEngineConfigurable<>(), new SimpleTemplateResolver());
 	}
 
 	public PebbleBundle(PebbleEngineConfigurable<T> pebbleEngineConfigurable, TemplateResolver templateResolver) {
