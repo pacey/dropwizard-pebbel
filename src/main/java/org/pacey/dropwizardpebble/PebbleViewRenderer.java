@@ -8,6 +8,7 @@ import io.dropwizard.lifecycle.setup.LifecycleEnvironment;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.Locale;
 
 public class PebbleViewRenderer<T extends Configuration> implements ViewRenderer<T> {
@@ -27,7 +28,7 @@ public class PebbleViewRenderer<T extends Configuration> implements ViewRenderer
 	}
 
 	public void render(PebbleView pebbleView, Locale locale, OutputStream output) throws IOException, PebbleException {
-		try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output)) {
+		try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output, Charset.forName("UTF-8"))) {
 			pebbleEngine.getTemplate(templateResolver.resolve(pebbleView)).evaluate(outputStreamWriter, pebbleView.getContext(), locale);
 		}
 	}
