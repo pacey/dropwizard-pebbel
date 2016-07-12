@@ -10,5 +10,6 @@ import java.util.Locale;
 
 public interface ViewRenderer<T extends Configuration> {
 	void configure(LifecycleEnvironment lifecycleEnvironment, T configuration);
+
 	void render(PebbleView pebbleView, Locale locale, OutputStream output) throws IOException, PebbleException;
 }

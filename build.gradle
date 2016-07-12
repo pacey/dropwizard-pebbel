@@ -8,7 +8,7 @@ apply plugin: 'jacoco'
 sourceCompatibility = 1.8
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.13'
+	gradleVersion = '2.14'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

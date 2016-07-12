@@ -6,25 +6,22 @@ import org.junit.Test;
 import org.pacey.dropwizardpebble.stub.StubApplication;
 import org.pacey.dropwizardpebble.stub.StubApplicationConfiguration;
 
-import javax.ws.rs.core.MediaType;
-
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class BasicRenderingTest {
+public class ErrorRenderingTest {
 
 	@Rule
 	public DropwizardAppRule<StubApplicationConfiguration> RULE =
 		new DropwizardAppRule<>(StubApplication.class);
 
 	@Test
-	public void shouldRenderABasicTemplate() throws Exception {
+	public void shouldReturnASensibleError() throws Exception {
 		given()
-			.header("Accept-Language", "en-gb")
-			.get(String.format("http://localhost:%d/stub.html", RULE.getLocalPort()))
+			.get(String.format("http://localhost:%d/index.html", RULE.getLocalPort()))
 			.then()
-			.statusCode(200)
-			.header("Content-Type", MediaType.TEXT_HTML)
-			.body(equalTo("<p>A rendered pebble template - willHaveAValue</p>" + System.lineSeparator()));
+			.statusCode(500)
+			.body(equalTo("<html><head><title>Template Error</title></head><body><h1>Template Error</h1><p>Something went wrong rendering the page</p></body><pre><code>com.mitchellbosecke.pebble.error.LoaderException: Could not find template \"templates/this-name-does-not-exist.peb\" (?:?)</code></pre></html>"));
 	}
+
 }

@@ -20,5 +20,6 @@ public class StubApplication extends Application<StubApplicationConfiguration> {
 	public void run(StubApplicationConfiguration configuration, Environment environment) throws Exception {
 		environment.jersey().register(new StubResource());
 		environment.jersey().register(new InternationalisationResource());
+		environment.jersey().register(new ErrorResource());
 	}
 }

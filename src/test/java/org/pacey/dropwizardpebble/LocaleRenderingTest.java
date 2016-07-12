@@ -20,10 +20,9 @@ public class LocaleRenderingTest {
 	@Test
 	public void shouldUseTheLocaleSpecifiedInTheHttpHeadersEnGB() throws Exception {
 		given()
-			.log().all()
 			.header("Accept-Language", "en-gb")
 			.get(String.format("http://localhost:%d/internationalisation.html", RULE.getLocalPort()))
-			.then().log().all()
+			.then()
 			.statusCode(200)
 			.header("Content-Type", MediaType.TEXT_HTML)
 			.body(equalTo("Alright me old mucka"));

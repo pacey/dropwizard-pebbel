@@ -13,6 +13,6 @@ public class StubView implements PebbleView {
 
 	@Override
 	public String getTemplateName() {
-		return "/stub";
+		return "stub";
 	}
 }
